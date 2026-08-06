@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { withBase } from '../utils/url';
+
+const defines = [
+  {
+    icon: '🎯',
+    title: 'Leadership at Scale',
+    text: 'I’ve guided cross-functional teams through major product transitions and delivery models, from monolithic architectures to modular, cloud-native platforms. Whether driving roadmap alignment or solving deployment bottlenecks, I lead with clarity, energy, and technical depth — always ensuring that the “why” behind a decision is as solid as the “how.”',
+  },
+  {
+    icon: '🌱',
+    title: 'Community Commitment',
+    text: 'I believe in the power of shared knowledge and collective progress. Through countless blog posts, conference talks, podcasts, and hands-on support, I’ve helped developers and partners navigate evolving technologies — rooted in real-world experience and focused on empowering others to lead, not just keep up.',
+  },
+  {
+    icon: '🔧',
+    title: 'Hands-On Expertise',
+    text: 'From pioneering NAV and Business Central on Docker, building BcContainerHelper and teaching the community to set up DevOps, to creating the AL-Go for GitHub tooling — I thrive at the intersection of development and operations: designing pipelines, architecting CI/CD strategies, and translating technical needs into repeatable processes that scale.',
+  },
+  {
+    icon: '⚙️',
+    title: 'Trusted Partner',
+    text: 'Working closely with partners and engineering teams alike, I’m known for being a candid advisor who’s unafraid to challenge assumptions — always in the service of better outcomes. I build strong relationships based on trust, shared goals, and a commitment to long-term impact.',
+  },
+  {
+    icon: '🛠️',
+    title: 'Technical Evangelist',
+    text: 'I’ve always been passionate about demystifying complexity. Whether introducing a new framework, explaining containerization, or streamlining SaaS onboarding, I make technical concepts accessible, actionable, and grounded in real use cases. For me, effective communication is as important as elegant code.',
+  },
+];
+---
+
+<Layout
+  title="Freddy.DK — About me"
+  description="Freddy Kristiansen — technologist, product strategist, and systems thinker with over two decades at Microsoft shaping Dynamics NAV and Business Central."
+>
+  <section class="about-hero">
+    <div class="container about-hero__inner">
+      <div class="about-photo">
+        <img src={withBase('/images/profile.jpg')} alt="Freddy Kristiansen" width="768" height="1166" />
+      </div>
+      <div class="about-intro">
+        <span class="eyebrow">About me</span>
+        <h1>Hi, I’m Freddy Kristiansen</h1>
+        <p>
+          A technologist, product strategist, and systems thinker with a
+          passion for solving complex challenges through elegant, scalable
+          solutions.
+        </p>
+        <p>
+          For over two decades at Microsoft, I played a central role in shaping
+          the architecture and delivery of Dynamics NAV and Business Central.
+          From leading product innovation to enabling DevOps transformations, I
+          focused on building platforms that empower partners, scale globally,
+          and serve real business needs.
+        </p>
+        <p>
+          As a speaker, mentor, and community advocate, I’ve always valued
+          transparency, practical insight, and staying close to both users and
+          developers. My work has consistently aimed to blend engineering
+          precision with customer value — and to leave things better than I
+          found them.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--lavender">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">What defines me</span>
+        <h2>Five things I bring to the table</h2>
+      </div>
+      <div class="defines-grid">
+        {defines.map((d) => (
+          <div class="define-card">
+            <div class="define-icon" aria-hidden="true">{d.icon}</div>
+            <div>
+              <h3>{d.title}</h3>
+              <p>{d.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Let’s work together"
+    text="Whether it’s advisory, DevOps, or a keynote — I’d love to hear what you’re working on."
+  />
+</Layout>
+
+<style>
+  .about-hero {
+    background: linear-gradient(180deg, #fbfbff, #ffffff);
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+  .about-hero__inner {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .about-photo img {
+    width: 100%;
+    max-width: 360px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 6px solid #fff;
+  }
+  .about-intro h1 { margin-bottom: 0.8rem; }
+  .about-intro p { color: var(--color-text); }
+  .about-intro p:first-of-type { font-size: 1.15rem; color: var(--color-navy); font-weight: 500; }
+
+  .defines-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .define-card {
+    display: flex;
+    gap: 1.1rem;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .define-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .define-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-purple));
+    font-size: 1.5rem;
+  }
+  .define-card h3 { color: var(--color-navy); font-size: 1.2rem; }
+  .define-card p { color: var(--color-text-muted); margin-bottom: 0; font-size: 0.96rem; }
+
+  @media (max-width: 860px) {
+    .about-hero__inner { grid-template-columns: 1fr; text-align: center; }
+    .about-photo { display: flex; justify-content: center; }
+    .defines-grid { grid-template-columns: 1fr; }
+    .define-card { text-align: left; }
+  }
+</style>

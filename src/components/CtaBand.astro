@@ -1,0 +1,43 @@
+---
+import { withBase } from '../utils/url';
+
+interface Props {
+  title?: string;
+  text?: string;
+  buttonLabel?: string;
+}
+const {
+  title = 'Ready to bring me into your corner?',
+  text = 'Whether it’s architecture, DevOps, or motivation — let’s talk about what you’re building.',
+  buttonLabel = 'Contact me for more information',
+} = Astro.props;
+---
+
+<section class="cta-band">
+  <div class="container text-center">
+    <h2>{title}</h2>
+    <p>{text}</p>
+    <a href={withBase('/contact/')} class="btn btn--primary">{buttonLabel}</a>
+  </div>
+</section>
+
+<style>
+  .cta-band {
+    background: linear-gradient(135deg, var(--color-purple), var(--color-accent));
+    color: #fff;
+    padding-block: clamp(3rem, 6vw, 4.5rem);
+  }
+  .cta-band h2 { color: #fff; margin-bottom: 0.6rem; }
+  .cta-band p {
+    max-width: 52ch;
+    margin: 0 auto 1.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+  }
+  .cta-band .btn--primary {
+    background: #fff;
+    color: var(--color-purple);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  }
+  .cta-band .btn--primary:hover { color: var(--color-purple); }
+</style>

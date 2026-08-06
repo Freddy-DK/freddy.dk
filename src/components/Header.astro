@@ -1,0 +1,134 @@
+---
+import { navItems } from '../data/nav';
+import { withBase } from '../utils/url';
+
+const path = Astro.url.pathname;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// Compare against the path with the base stripped, so active state works under a subpath.
+const rel = path.startsWith(base) ? path.slice(base.length) || '/' : path;
+const isActive = (href: string) =>
+  href === '/' ? rel === '/' : rel.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href={withBase('/')} class="logo" aria-label="Freddy.dk — home">
+      <img src={withBase('/images/logo.png')} alt="Freddy.dk" width="1059" height="322" />
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden />
+    <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav class="main-nav" aria-label="Primary">
+      <ul>
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.external ? item.href : withBase(item.href)}
+              class:list={['nav-link', { active: !item.external && isActive(item.href) }]}
+              {...(item.external ? { target: '_blank', rel: 'noopener' } : {})}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 76px;
+  }
+  .logo img {
+    height: 40px;
+    width: auto;
+  }
+
+  .main-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-link {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--color-navy);
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    transition: color var(--transition), background var(--transition);
+  }
+  .nav-link:hover { color: var(--color-accent); background: var(--color-lavender); }
+  .nav-link.active { color: var(--color-accent); }
+
+  /* Burger (hidden on desktop) */
+  .nav-toggle { display: none; }
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+  }
+  .nav-burger span {
+    width: 26px;
+    height: 3px;
+    background: var(--color-navy);
+    border-radius: 3px;
+    transition: transform var(--transition), opacity var(--transition);
+  }
+
+  @media (max-width: 980px) {
+    .nav-burger { display: flex; }
+    .main-nav {
+      position: absolute;
+      top: 76px;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: var(--shadow-md);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .main-nav ul {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.5rem 1rem 1.25rem;
+    }
+    .nav-link {
+      display: block;
+      padding: 0.85rem 0.8rem;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 1.05rem;
+    }
+    .main-nav ul li:last-child .nav-link { border-bottom: none; }
+
+    .nav-toggle:checked ~ .main-nav { max-height: 70vh; }
+    .nav-toggle:checked ~ .nav-burger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav-toggle:checked ~ .nav-burger span:nth-child(2) { opacity: 0; }
+    .nav-toggle:checked ~ .nav-burger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  }
+</style>

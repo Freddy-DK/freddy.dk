@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { withBase } from '../utils/url';
+
+const engagements = [
+  {
+    icon: '🎤',
+    title: 'Keynote Speaking',
+    text: 'Deliver powerful, customized keynotes at conferences, company events, and leadership summits — tailored to your audience and event theme.',
+  },
+  {
+    icon: '🤝',
+    title: 'Team Motivation & Culture Building',
+    text: 'Inspire stronger collaboration, ownership, and engagement through talks that challenge limiting beliefs and encourage a growth mindset.',
+  },
+  {
+    icon: '🌊',
+    title: 'Change & Resilience Talks',
+    text: 'Help teams navigate change and uncertainty with courage, adaptability, and renewed perspective.',
+  },
+  {
+    icon: '🚀',
+    title: 'Leadership Inspiration',
+    text: 'Empower leaders at all levels to step up, lead with authenticity, and drive impact beyond their role.',
+  },
+];
+---
+
+<Layout
+  title="Freddy.DK — Motivational Speaker"
+  description="A motivational speaker who inspires audiences to unlock their full potential, embrace change, and take meaningful action."
+>
+  <PageHero
+    eyebrow="Keynotes & inspiration"
+    title="Motivational Speaker"
+    lead="As a motivational speaker, I inspire audiences to unlock their full potential, embrace change, and take meaningful action."
+  />
+
+  <section class="section">
+    <div class="container container--narrow text-center">
+      <span class="eyebrow">Value proposition</span>
+      <h2>From intention to action</h2>
+      <p class="lead">
+        I help individuals and teams reconnect with their purpose, overcome
+        mental barriers, and move from intention to action.
+      </p>
+      <a href={withBase('/contact/')} class="btn btn--primary" style="margin-top:1rem">Contact me for more information</a>
+    </div>
+  </section>
+
+  <section class="section section--lavender">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Examples of engagements</span>
+        <h2>Ways to work together</h2>
+      </div>
+      <div class="talk-grid">
+        {engagements.map((e) => (
+          <div class="talk-card">
+            <div class="talk-icon" aria-hidden="true">{e.icon}</div>
+            <h3>{e.title}</h3>
+            <p>{e.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Ready to energize your audience?"
+    text="Let’s craft a talk that leaves your team focused, motivated, and ready to move forward with purpose."
+  />
+</Layout>
+
+<style>
+  .talk-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+  .talk-card {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .talk-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .talk-icon {
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-purple));
+    font-size: 1.7rem;
+    margin-bottom: 1.1rem;
+  }
+  .talk-card h3 { color: var(--color-navy); }
+  .talk-card p { color: var(--color-text-muted); margin-bottom: 0; }
+
+  @media (max-width: 720px) {
+    .talk-grid { grid-template-columns: 1fr; }
+  }
+</style>

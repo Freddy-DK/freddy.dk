@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { withBase } from '../utils/url';
+
+const engagements = [
+  {
+    title: 'DevOps Health Check',
+    text: 'Get a detailed report of the current state of your DevOps setup with recommendations on how to make yourself better prepared for the future. We’ll agree on a budget and timeline up front. With access to your environment, I’ll perform a full health check and then present the findings and recommendations in an online meeting.',
+  },
+  {
+    title: 'AL-Go for GitHub Training',
+    text: 'I provide both on-site and online training in GitHub and AL-Go for GitHub — tailored from beginner introductions to advanced configuration and usage. Each module lasts around two hours, and a full-day on-site workshop typically covers up to three modules.',
+  },
+  {
+    title: 'Azure DevOps → AL-Go for GitHub',
+    text: 'I help teams evaluate their existing Azure DevOps pipelines and plan, then execute, a smooth migration to AL-Go for GitHub. For large or complex setups, a full-day on-site workshop is often the best way to kick things off — ideally starting with a health check.',
+  },
+  {
+    title: 'Optimize your AL-Go for GitHub',
+    text: 'I help teams review and optimize their setup to ensure a stable, efficient, and scalable development process. With access to your environment, I perform a thorough health check and provide clear recommendations on how to better leverage GitHub and AL-Go.',
+  },
+];
+---
+
+<Layout
+  title="Freddy.DK — DevOps / AL-Go for GitHub"
+  description="DevOps health checks, AL-Go for GitHub training, and Azure DevOps migration from the creator of AL-Go for GitHub."
+>
+  <PageHero
+    eyebrow="DevOps done right"
+    title="DevOps / AL-Go for GitHub"
+    lead="A solid DevOps foundation isn’t just helpful — it’s essential. Let me help you build one that keeps pace with Business Central."
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <span class="eyebrow">Why it matters</span>
+      <h2>A professional DevOps setup matters to partners &amp; customers</h2>
+      <p>
+        In today’s rapidly evolving software landscape — where versions shift,
+        environments expand, platforms diversify, and security demands escalate
+        — a solid DevOps foundation isn’t just helpful, it’s essential.
+      </p>
+      <p>
+        As Microsoft continually updates Business Central, your DevOps solution
+        must keep pace. A modern setup ensures environments stay current and
+        compatible without constant manual tweaks.
+      </p>
+      <p>
+        I strongly recommend using a managed DevOps solution like AL-Go for
+        GitHub, ALOps or Alpaca. I provide health checks for all setups, but
+        only provide training and assistance when moving to AL-Go for GitHub.
+        AL-Go offers templates and actions that automate continuous integration,
+        continuous deployment, testing, version control, and more — built with
+        best practices from day one.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--lavender">
+    <div class="container container--narrow text-center">
+      <span class="eyebrow">Value proposition</span>
+      <h2>Effortless, up-to-date pipelines</h2>
+      <p class="lead">
+        By adopting a plug-and-play solution like AL-Go for GitHub, maintaining
+        a stable and up-to-date pipeline becomes effortless. A simple workflow
+        run updates your repository to the latest DevOps standard — letting
+        developers focus on providing customer value, not on maintaining
+        pipelines.
+      </p>
+      <a href={withBase('/contact/')} class="btn btn--primary" style="margin-top:1rem">Contact me to get started</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Examples of engagements</span>
+        <h2>Where I can help</h2>
+      </div>
+      <div class="devops-grid">
+        {engagements.map((e, i) => (
+          <div class="devops-card">
+            <span class="devops-num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{e.title}</h3>
+            <p>{e.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Ready to future-proof your DevOps?"
+    text="Contact me to plan a health check, book AL-Go training, or scope a migration."
+    buttonLabel="Contact me to learn more"
+  />
+</Layout>
+
+<style>
+  .devops-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+  .devops-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .devops-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .devops-num {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 2.5rem;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0.9;
+  }
+  .devops-card h3 { color: var(--color-navy); margin-top: 0.5rem; }
+  .devops-card p { color: var(--color-text-muted); margin-bottom: 0; font-size: 0.98rem; }
+
+  @media (max-width: 820px) {
+    .devops-grid { grid-template-columns: 1fr; }
+  }
+</style>
