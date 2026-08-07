@@ -1,12 +1,12 @@
 /* ==========================================================================
-   Design tokens — extracted from the original freddy.dk (Astra + Elementor)
+   Design tokens - extracted from the original freddy.dk (Astra + Elementor)
    ========================================================================== */
 :root {
   /* Brand palette */
-  --color-navy: #1c224b;      /* primary — headings, header, footer */
+  --color-navy: #1c224b;      /* primary - headings, header, footer */
   --color-navy-deep: #151a3a;
-  --color-purple: #6a0dad;    /* secondary — service accents */
-  --color-accent: #8e63ff;    /* accent — buttons, links, highlights */
+  --color-purple: #6a0dad;    /* secondary - service accents */
+  --color-accent: #8e63ff;    /* accent - buttons, links, highlights */
   --color-accent-soft: #a988ff;
   --color-blue: #324e91;
   --color-lavender: #eef1ff;  /* soft section background */
