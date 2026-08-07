@@ -3,8 +3,8 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  // Deployed as a GitHub Pages project site: https://freddy-dk.github.io/freddy.dk/
-  site: 'https://freddy-dk.github.io',
-  base: '/freddy.dk/',
+  // Served from the custom domain at the root path.
+  site: 'https://freddy.dk',
+  base: '/',
   trailingSlash: 'always',
 });
