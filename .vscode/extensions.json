@@ -1,0 +1,13 @@
+{
+  // Extensions VS Code will recommend when this repo is opened.
+  // Docs: https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions
+  "recommendations": [
+    // Official Astro language support: syntax highlighting, IntelliSense,
+    // and formatting for .astro files. Essential for this project.
+    "astro-build.astro-vscode",
+
+    // Prettier — consistent code formatting. Pairs with prettier-plugin-astro
+    // so .astro / .ts / .css files format the same way for everyone.
+    "esbenp.prettier-vscode"
+  ]
+}
