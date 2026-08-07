@@ -12,5 +12,8 @@
   },
   "dependencies": {
     "astro": "^4.16.18"
+  },
+  "devDependencies": {
+    "@napi-rs/canvas": "^1.0.3"
   }
 }

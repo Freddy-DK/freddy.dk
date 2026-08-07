@@ -15,7 +15,7 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).href;
-const ogImage = new URL(withBase('/images/freddy-in-your-corner.png'), Astro.site ?? Astro.url.origin).href;
+const ogImage = new URL(withBase('/images/og-image.png'), Astro.site ?? Astro.url.origin).href;
 ---
 
 <!doctype html>
@@ -34,7 +34,10 @@ const ogImage = new URL(withBase('/images/freddy-in-your-corner.png'), Astro.sit
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Fonts: Poppins (headings) + Inter (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
