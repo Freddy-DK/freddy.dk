@@ -1,0 +1,140 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { withBase } from '../utils/url';
+
+const modules = [
+  {
+    title: 'AL-Go for GitHub',
+    text: 'We provide both on-site and online training in GitHub and AL-Go for GitHub - tailored from beginner introductions to advanced configuration and usage. It is often combined with Fkh (Freddy’s Kubernetes Helper). Each module lasts around two hours, and a full-day on-site workshop typically covers up to three modules.',
+  },
+  {
+    title: 'Fkh (Freddy’s Kubernetes Helper)',
+    text: 'Hands-on training in setting up, configuring, and operating Fkh - the secure, plug-and-play way to host Business Central development environments directly in your own Azure subscription. Get your team up and running in minutes instead of days, without expensive hardware or long PowerShell scripts.',
+  },
+  {
+    title: 'Practical AI',
+    text: 'AI as a daily work skill, not a specialist niche. Together with Jonas Dalgas (Microsoft Certified Trainer) at Freddy.DK, we deliver full-day courses, sparring groups, and webinars that turn AI from a buzzword into something your whole team uses in real work - with concrete examples and practical exercises, not hype.',
+    href: 'https://dalgaskompas.com/',
+    linkLabel: 'Explore the AI training at DalgasKompas →',
+  },
+];
+---
+
+<Layout
+  title="Freddy.DK - Training"
+  description="On-site and online training across AL-Go for GitHub, Fkh (Freddy’s Kubernetes Helper), and AI - tailored from beginner introductions to advanced configuration and usage."
+>
+  <PageHero
+    eyebrow="Learn by doing"
+    title="Training"
+    lead="Practical, hands-on training that helps your team master the tools and ways of working that keep them productive, confident, and ready for what’s next."
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <span class="eyebrow">Why it matters</span>
+      <h2>Give your team the skills to move faster</h2>
+      <p>
+        The best tools only deliver value when your team knows how to use them.
+        Well-structured training turns new technology into everyday practice -
+        letting developers save valuable time and focus on the work that creates
+        real customer value.
+      </p>
+      <p>
+        We offer both on-site and online training across three areas: AL-Go for
+        GitHub, Fkh (Freddy’s Kubernetes Helper), and practical AI. Each is
+        tailored to your team, from beginner introductions to advanced
+        configuration and usage.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--lavender">
+    <div class="container container--narrow text-center">
+      <span class="eyebrow">Value proposition</span>
+      <h2>Tailored to where your team is today</h2>
+      <p class="lead">
+        Whether you’re just getting started or looking to level up an
+        experienced team, training is shaped around your goals - delivered as
+        focused modules or full-day on-site workshops, so your team learns
+        exactly what they need to succeed.
+      </p>
+      <a href={withBase('/contact/')} class="btn btn--primary" style="margin-top:1rem">Contact me to get started</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">What we train on</span>
+        <h2>Three areas of expertise</h2>
+      </div>
+      <div class="devops-grid">
+        {modules.map((m, i) => (
+          <div class="devops-card">
+            <span class="devops-num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{m.title}</h3>
+            <p>{m.text}</p>
+            {m.href && (
+              <a href={m.href} class="devops-card__link" target="_blank" rel="noopener">
+                {m.linkLabel}
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Ready to upskill your team?"
+    text="Contact me to plan AL-Go, Fkh, or practical AI training tailored to your team."
+    buttonLabel="Contact me to learn more"
+  />
+</Layout>
+
+<style>
+  .devops-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+  .devops-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .devops-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .devops-num {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 2.5rem;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0.9;
+  }
+  .devops-card h3 { color: var(--color-navy); margin-top: 0.5rem; }
+  .devops-card p { color: var(--color-text-muted); font-size: 0.98rem; }
+  .devops-card__link {
+    margin-top: auto;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 980px) {
+    .devops-grid { grid-template-columns: 1fr; }
+  }
+</style>

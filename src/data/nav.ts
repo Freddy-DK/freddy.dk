@@ -6,13 +6,12 @@ export interface NavItem {
 }
 
 export const navItems: NavItem[] = [
-  { label: 'Home', href: '/' },
   { label: 'Freddy in Your Corner', href: '/freddy-in-your-corner/' },
   { label: 'Motivational Speaker', href: '/motivational-speaker/' },
   { label: 'DevOps / AL-Go / Fkh', href: '/devops/' },
-  { label: 'About me', href: '/about/' },
+  { label: 'Training', href: '/training/' },
   { label: 'Blog', href: 'https://freddysblog.com', external: true },
-  { label: 'Contact', href: '/contact/' },
+  { label: 'About me', href: '/about/' },
 ];
 
 export const social = {
